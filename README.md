@@ -1,20 +1,47 @@
-# Email Module For Kohana 3.x
+# Email Module For Kohana 3.x and Koseven
 
 Factory-based email class. This class is a simple wrapper around [Swiftmailer](http://github.com/swiftmailer/swiftmailer).
+
+## Updates
+
+* Based on the first email module for Kohana 3.x https://github.com/kierangraham/email
+* Uses latest version of Swiftmailer (6.x) which removes ::newInstance() methods
+* Adds support for using views similar to `View::factory(...)` as email body
+* Works with [Koseven](https://github.com/koseven/koseven) and [Cascading filesystem](https://docs.koseven.ga/guide/kohana/files)
+
+## Installation
+
+1. Download to modules directory.
+2. Include it in `APPPATH/bootstrap.php` modules list:
+```php
+Kohana::modules(array(
+	...
+	'email' => MODPATH.'email',
+	...
+));
+```
+3. Go to your `DOCROOT` and include latest Swiftmailer
+```
+composer require swiftmailer/swiftmailer
+```
 
 ## Usage
 
 Create new messages using the `Email::factory($subject, $message)` method. Add recipients, add sender, send message:
 
-    $email = Email::factory('Hello, World', 'This is my body, it is nice.')
-        ->to('person@example.com')
-        ->from('you@example.com', 'My Name')
-        ->send()
-        ;
+
+```
+$email = Email::factory('Hello, World', 'This is my body, it is nice.')
+              ->to('person@example.com')
+              ->from('you@example.com', 'My Name')
+              ->send();
+```
 
 You can also add HTML to your message:
 
-    $email->message('<p>This is <em>my</em> body, it is <strong>nice</strong>.</p>', 'text/html');
+```
+$email->message('<p>This is <em>my</em> body, it is <strong>nice</strong>.</p>', 'text/html');
+```
 
 Additional recipients can be added using the `to()`, `cc()`, and `bcc()` methods.
 
