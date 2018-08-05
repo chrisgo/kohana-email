@@ -46,7 +46,7 @@ You can also use a view and bind variables (like in the controllers)
 
 ```
 $body = "This is a test from Kohana Email module";
-$email = Email::factory('Hello, World', 'This is my body, it is nice.')
+$email = Email::factory('Hello, World')
               ->from('you@example.com', 'My Name')
               ->to('person@example.com')
               ->view('emails/message')
