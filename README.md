@@ -14,11 +14,11 @@ Factory-based email class. This class is a simple wrapper around [Swiftmailer](h
 1. Download to modules directory.
 2. Include it in `APPPATH/bootstrap.php` modules list:
 ```php
-Kohana::modules(array(
-	...
-	'email' => MODPATH.'email',
-	...
-));
+Kohana::modules([
+  ...
+  'email' => MODPATH.'kohana-email',
+  ...
+]);
 ```
 3. Go to your `DOCROOT` and include latest Swiftmailer
 ```
