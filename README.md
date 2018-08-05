@@ -48,7 +48,7 @@ You can also use a view and bind variables (like in the controllers)
 $email = Email::factory('Hello, World', 'This is my body, it is nice.')
               ->to('person@example.com')
               ->from('you@example.com', 'My Name')
-              ->view('emails/notify')
+              ->view('emails/message')
               ->bind('email', $email)
               ->send();
 ```
