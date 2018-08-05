@@ -4,7 +4,7 @@ Factory-based email class. This class is a simple wrapper around [Swiftmailer](h
 
 ## Updates
 
-* Based on the first email module for Kohana 3.x https://github.com/kierangraham/email
+* Based on the first email module for Kohana 3.x (shadowhand/email)
 * Uses latest version of Swiftmailer (6.x) which removes ::newInstance() methods
 * Adds support for using views similar to `View::factory(...)` as email body
 * Works with [Koseven](https://github.com/koseven/koseven) and [Cascading filesystem](https://docs.koseven.ga/guide/kohana/files)
@@ -29,7 +29,6 @@ composer require swiftmailer/swiftmailer
 
 Create new messages using the `Email::factory($subject, $message)` method. Add recipients, add sender, send message:
 
-
 ```
 $email = Email::factory('Hello, World', 'This is my body, it is nice.')
               ->to('person@example.com')
@@ -41,6 +40,17 @@ You can also add HTML to your message:
 
 ```
 $email->message('<p>This is <em>my</em> body, it is <strong>nice</strong>.</p>', 'text/html');
+```
+
+You can also use a view and bind variables (like in the controllers)
+
+```
+$email = Email::factory('Hello, World', 'This is my body, it is nice.')
+							->to('person@example.com')
+							->from('you@example.com', 'My Name')
+							->view('emails/notify')
+							->bind('email', $email)
+							->send();
 ```
 
 Additional recipients can be added using the `to()`, `cc()`, and `bcc()` methods.
