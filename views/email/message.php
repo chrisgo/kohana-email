@@ -1,1 +1,3 @@
-This is an email from Kohana to <?php echo $email ?>
+Message Body:
+<br/>
+<?php echo $body ?>
