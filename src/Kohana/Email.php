@@ -510,70 +510,70 @@ class Kohana_Email
 	}
 
 	/**
-   * Build the message using a view
-   */
-  protected function buildMessageUsingView()
-  {
-      // (1) Render the view using the template
-      $template = View::factory($this->_template);
-      // (2) Grab the subject
-      $subject = $this->raw_message()->getSubject();
-      if (!empty($subject)) {
-          $template->subject = $subject;
-      }
-      // (3) Render
-      if (!empty($this->_data) AND !empty($this->_view)) {
-          $view = View::factory($this->_view);
-          //Log::debug("rendering view");
-          foreach ($this->_data as $key => $value) {
-              //Log::debug("adding var to template: ".$key);
-              $view->set($key, $value);
-          }
-          $template->content = $view->render();
-      } else {
-          $template->content = 'No view set';
-      }
-      // (4) Set the message
-      $this->message($template->render(), 'text/html');
-      // (5) Set ready to true
-      $this->_ready = true;
-    }
+	 * Build the message using a view
+	 */
+	protected function buildMessageUsingView()
+	{
+			// (1) Render the view using the template
+			$template = View::factory($this->_template);
+			// (2) Grab the subject
+			$subject = $this->raw_message()->getSubject();
+			if (!empty($subject)) {
+					$template->subject = $subject;
+			}
+			// (3) Render
+			if (!empty($this->_data) AND !empty($this->_view)) {
+					$view = View::factory($this->_view);
+					//Log::debug("rendering view");
+					foreach ($this->_data as $key => $value) {
+							//Log::debug("adding var to template: ".$key);
+							$view->set($key, $value);
+					}
+					$template->content = $view->render();
+			} else {
+					$template->content = 'No view set';
+			}
+			// (4) Set the message
+			$this->message($template->render(), 'text/html');
+			// (5) Set ready to true
+			$this->_ready = true;
+		}
 
-		/**
-     * Sets some variables for the action to perform on
-     * @param unknown $values
-     * @param unknown $value
-     * @return Email
-     */
-    public function set($values, $value = NULL)
-    {
-        if ( ! is_array($values)) {
-            $values = array($values => $value);
-        }
-        foreach ($values as $key => $value) {
-            $this->_data[$key] = $value;
-        }
-        return $this;
-    }
+	/**
+	 * Sets some variables for the action to perform on
+	 * @param unknown $values
+	 * @param unknown $value
+	 * @return Email
+	 */
+	public function set($values, $value = NULL)
+	{
+			if ( ! is_array($values)) {
+					$values = array($values => $value);
+			}
+			foreach ($values as $key => $value) {
+					$this->_data[$key] = $value;
+			}
+			return $this;
+	}
 
-    /**
-     * Assigns a value by reference. The benefit of binding is that values can
-     * be altered without re-setting them. It is also possible to bind variables
-     * before they have values. Assigned values will be available as a
-     * variable within the action:
-     *
-     *     // This reference can be accessed as $ref within the view
-     *     $action->bind('ref', $bar);
-     *
-     * @param   string   variable name
-     * @param   mixed    referenced variable
-     * @return  $this
-     */
-    public function bind($key, &$value)
-    {
-        $this->_data[$key] =& $value;
-        return $this;
-    }
+	/**
+	 * Assigns a value by reference. The benefit of binding is that values can
+	 * be altered without re-setting them. It is also possible to bind variables
+	 * before they have values. Assigned values will be available as a
+	 * variable within the action:
+	 *
+	 *     // This reference can be accessed as $ref within the view
+	 *     $action->bind('ref', $bar);
+	 *
+	 * @param   string   variable name
+	 * @param   mixed    referenced variable
+	 * @return  $this
+	 */
+	public function bind($key, &$value)
+	{
+			$this->_data[$key] =& $value;
+			return $this;
+	}
 
 
 
