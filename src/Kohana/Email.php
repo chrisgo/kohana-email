@@ -23,7 +23,7 @@ class Kohana_Email
 	/**
 	 * @var	string 	template
 	 */
-	protected $_template = 'email/template/base';
+	protected $_template = 'email/template';
 
 	/**
 	 * @var	object 	View
