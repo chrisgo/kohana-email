@@ -4,7 +4,7 @@ Factory-based email class. This class is a simple wrapper around [Swiftmailer](h
 
 ## Updates
 
-* Based on the first email module for Kohana 3.x (shadowhand/email)
+* Based on the first email module for Kohana 3.x (shadowhand/email) with same method signatures
 * Uses latest version of Swiftmailer (6.x) which removes ::newInstance() methods
 * Adds support for using views similar to `View::factory(...)` as email body
 * Works with [Koseven](https://github.com/koseven/koseven) and [Cascading filesystem](https://docs.koseven.ga/guide/kohana/files)
@@ -63,3 +63,7 @@ To access and modify the [Swiftmailer message](http://swiftmailer.org/docs/messa
 ## Configuration
 
 Configuration is stored in `config/email.php`. Options are dependant upon transport method used. Consult the Swiftmailer documentation for options available to each transport.
+
+## Alternatives
+
+* https://github.com/svenbw/kohana-email - more modern, can use PHPMailer or Swiftmailer using drivers
